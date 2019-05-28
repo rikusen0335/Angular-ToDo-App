@@ -319,6 +319,16 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@mdi/angular-material@^3.6.95":
+  version "3.6.95"
+  resolved "https://registry.yarnpkg.com/@mdi/angular-material/-/angular-material-3.6.95.tgz#8d4b306f65f40021ab1254ff575d236d9109abe0"
+  integrity sha512-c4FHaG/gMyVfnI79dNzcVoP/eYlgVrE/GZ+0KW9H8vuOxrKVNefv1Il5G+49kCbQBQY2VrkXwm4duxEeEYVXAA==
+
+"@mdi/font@^3.6.95":
+  version "3.6.95"
+  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-3.6.95.tgz#0bbde766ca2d94cfa0e469f25523b23d3112bdd3"
+  integrity sha512-wUbkF/RRCIh51TPzAL9qUeRSUFla9I3x1nGq62HkfWzIebRHbDY5HPaYCQuZO7398dWaLHTu4BwnBA58YbhfEA==
+
 "@ng-bootstrap/ng-bootstrap@^2.0.0-alpha.0":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-2.2.2.tgz#07c64badd48b563140eb5a6327b5516bf2226834"
