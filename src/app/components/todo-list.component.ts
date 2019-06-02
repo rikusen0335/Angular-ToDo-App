@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { catchError, map } from 'rxjs/operators';
 
@@ -12,12 +12,41 @@ import { Todo } from '../models/models';
 })
 export class TodoListComponent {
   todos: Todo[] = [];
+  newtodos: Todo[] = [];
+  @Input() todo: Todo = new Todo();
+  @Output() valueChange = new EventEmitter<string>();
 
   constructor(
     private todoService: TodoService,
   ){}
+
+  // 初期動作
   ngOnInit(): void {
     // todo.service.tsのgetAllTodoで全てのTodoを取得し、表示する
     this.todoService.getAllTodo().subscribe(todos => this.todos = todos)
+  }
+
+  // 保存ボタンを押した時の挙動
+  save(): void {
+    this.todoService
+      .create(this.todo)
+      .pipe(
+        map(data => {this.getNewTodo()})
+      )
+    this.todo = new Todo();
+  }
+
+  // 最新の一件を呼び出す挙動
+  getNewTodo(): void {
+    this.todoService
+      .getNewTodo()
+      .pipe(
+        map(res => {this.pushData(res)})
+      )
+  }
+
+  // htmlに渡すnewtodosにデータをpushする
+  pushData(data: Todo): void {
+    this.newtodos.unshift(data);
   }
 }

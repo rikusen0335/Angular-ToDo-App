@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //import { Observable } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { Todo } from '../models/models';
 import { Observable } from 'rxjs';
@@ -30,7 +30,8 @@ export class TodoService {
   }
 
   // 追加時の挙動
-  create(todo: Todo) {
+  create(todo: Todo): Observable<Todo> {
+    console.log('created')
     return this.http
       .post(this.Url, this.body, {headers: this.headers})
       .pipe(
@@ -40,7 +41,7 @@ export class TodoService {
   }
 
   // 追加された最新のtodoを一件取得する
-  getNewTodo() {
+  getNewTodo(): Observable<Todo> {
     return this.http
       .get(this.Url + "?limit=1")
       .pipe(

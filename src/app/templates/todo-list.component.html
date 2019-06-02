@@ -1,9 +1,59 @@
-<div class="todo-list row">
-  <div *ngFor="let todo of todos" class="col-sm-8 col-sm-offset-2">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <span from="name">{{ todo.title }}</span>
-      </div>
-    </div>
+<!-- Input form -->
+<div class="input-group mb-3">
+  <input
+    [(ngModel)]="todo.title"
+    id="input_text"
+    type="text"
+    class="form-control"
+    placeholder="Type what you want to be done"
+    (keydown.enter)="save()">
+
+  <!-- Add Button -->
+  <div class="input-group-append">
+    <button
+      class="btn btn-outline-success"
+      type="button"
+      (click)="save()">
+      <mat-icon svgIcon="plus"></mat-icon>
+      Add
+    </button>
+  </div>
+
+  <!-- Delete Button -->
+  <div class="input-group-append">
+    <button class="btn btn-outline-danger" type="button">
+      <mat-icon svgIcon="delete"></mat-icon>
+      Delete
+    </button>
+  </div>
+</div>
+
+<!-- New Todos -->
+<div *ngFor="let newtodo of newtodos" class="input-group mb-3">
+  <input type="text" class="form-control" value="{{ newtodo[0].title }}" disabled>
+
+  <!-- Delete Button -->
+  <div class="input-group-append">
+    <button class="btn btn-outline-danger" type="button">
+      <mat-icon svgIcon="delete"></mat-icon>
+      Delete
+    </button>
+  </div>
+</div>
+
+<!-- Exist Todos-->
+<div *ngFor="let todo of todos" class="input-group mb-3">
+  <input
+    type="text"
+    class="form-control"
+    value="{{ todo.title }}"
+    disabled>
+
+  <!-- Delete Button -->
+  <div class="input-group-append">
+    <button class="btn btn-outline-danger" type="button">
+      <mat-icon svgIcon="delete"></mat-icon>
+      Delete
+    </button>
   </div>
 </div>
