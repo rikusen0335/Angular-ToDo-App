@@ -18,9 +18,12 @@ export class TodoListComponent {
   ){}
   ngOnInit(): void {
     // todo.service.tsのgetAllTodoで全てのTodoを取得し、表示する
+    console.log('ngOnInit');
     this.todoService.getAllTodo()
     .pipe(
       map(todos => this.todos = todos)
+      
     )
+    
   }
 }
