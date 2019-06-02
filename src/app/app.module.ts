@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TypeScriptComponent } from './type-script/type-script.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -15,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     IndexComponent,
-    TypeScriptComponent
   ],
   imports: [
     BrowserModule,
