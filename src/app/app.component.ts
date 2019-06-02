@@ -2,9 +2,19 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <h1 class="text-center">
+      <span class="title">{{ title }}</span>
+      <p class="sub-title">{{ subtitle }}</p>
+    </h1>
+    <router-outlet></router-outlet>
+    `,
+  styles: [
+    '.title { color: #ee6e73;}',
+    '.sub-title { font-size: small; }'
+  ],
 })
 export class AppComponent {
-  title = 'angular-todo-app';
+  title = 'Simple Todo';
+  subtitle = 'Angular4 + Django2 Rest Framework'
 }
