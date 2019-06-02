@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //import { Observable } from 'rxjs'
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { Todo } from '../models/models';
 import { Observable } from 'rxjs';
@@ -21,16 +21,18 @@ export class TodoService {
 
   // 全てのtodoをGETする
   getAllTodo() {
-    return this.http.get(this.Url)
+    return this.http
+      .get(this.Url)
       .pipe(
-        map(res => res as Todo[]),
+        map(res => res),
         catchError(this.handleError)
       )
   }
 
   // 追加時の挙動
   create(todo: Todo) {
-    return this.http.post(this.Url, this.body, {headers: this.headers})
+    return this.http
+      .post(this.Url, this.body, {headers: this.headers})
       .pipe(
         map(res => res),
         catchError(this.handleError)
@@ -39,7 +41,8 @@ export class TodoService {
 
   // 追加された最新のtodoを一件取得する
   getNewTodo() {
-    return this.http.get(this.Url + "?limit=1")
+    return this.http
+      .get(this.Url + "?limit=1")
       .pipe(
         map(res => res),
         catchError(this.handleError)
@@ -49,7 +52,8 @@ export class TodoService {
   // 更新時の挙動
   update(todo: Todo){
     const url = `${this.Url}${todo.id}/`;
-    return this.http.put(url, this.body, {headers: this.headers})
+    return this.http
+      .put(url, this.body, {headers: this.headers})
       .pipe(
         map(res => res),
         catchError(this.handleError)
@@ -59,7 +63,8 @@ export class TodoService {
   // 削除時の挙動
   delete(id: number): Observable<void> {
     const url = `${this.Url}${id}/`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http
+      .delete(url, {headers: this.headers})
       .pipe(
         map(() => null),
         catchError(this.handleError)
