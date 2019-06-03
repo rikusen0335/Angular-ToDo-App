@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, QueryList } from '@angular/core';
 
-import { catchError, map } from 'rxjs/operators';
+//import { catchError, map } from 'rxjs/operators';
 
 import { TodoService } from '../services/todo.service';
 import { Todo } from '../models/models';
@@ -13,6 +13,7 @@ import { Todo } from '../models/models';
 export class TodoListComponent {
   todos: Todo[] = [];
   @Input() todo: Todo = new Todo();
+  @ViewChild('titleInput') inputElement: QueryList<ElementRef>;
 
   constructor(
     private todoService: TodoService,
@@ -46,7 +47,7 @@ export class TodoListComponent {
   update(id: number, title: string): void {
     let todo = {
       id: id,
-      title: title
+      title: title,
     }
     this.todoService
       .update(todo)
@@ -55,7 +56,7 @@ export class TodoListComponent {
         this.todos[todoIndex] = newTodo
       })
   }
-
+  
   // 最新の一件を呼び出す挙動
   /*getNewTodo(): void {
     this.todoService

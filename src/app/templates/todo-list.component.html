@@ -22,14 +22,17 @@
 
 
 <!-- Todo list -->
-<div *ngFor="let todo of todos" class="input-group mb-3">
+<div *ngFor="let todo of todos; index as i" class="input-group mb-3">
   <input
     [(ngModel)]="todo.title"
     type="text"
     class="form-control"
     value="{{ todo.title }}"
     (keydown.enter)="update(todo.id, todo.title) || todo.isEdit=false"
-    [disabled]="!todo.isEdit">
+    (focusout)="todo.isEdit=false; todo.title=todo.oldTitle"
+    (focus)="todo.oldTitle=todo.title"
+    [disabled]="!todo.isEdit"
+    #titleInput>
 
   <!-- Edit Button -->
   <div class="input-group-append">
