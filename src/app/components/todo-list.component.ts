@@ -13,7 +13,6 @@ import { Todo } from '../models/models';
 export class TodoListComponent {
   todos: Todo[] = [];
   @Input() todo: Todo = new Todo();
-  //@Output() valueChange = new EventEmitter<string>();
 
   constructor(
     private todoService: TodoService,
@@ -41,6 +40,20 @@ export class TodoListComponent {
     this.todoService
       .delete(id)
       .subscribe(() => this.popDataId(id))
+  }
+
+  // todoを更新した時の挙動
+  update(id: number, title: string): void {
+    let todo = {
+      id: id,
+      title: title
+    }
+    this.todoService
+      .update(todo)
+      .subscribe(newTodo => {
+        const todoIndex = this.todos.findIndex((element) => element.id === id)
+        this.todos[todoIndex] = newTodo
+      })
   }
 
   // 最新の一件を呼び出す挙動

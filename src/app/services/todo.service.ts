@@ -13,7 +13,6 @@ export class TodoService {
   todo: Todo[] = [];
   private Url = `http://127.0.0.1:8000/api/todo/`
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  private body = JSON.stringify(this.todo)
 
   constructor(
     private http: HttpClient
@@ -53,7 +52,7 @@ export class TodoService {
   update(todo: Todo){
     const url = `${this.Url}${todo.id}/`;
     return this.http
-      .put(url, this.body, {headers: this.headers})
+      .put(url, JSON.stringify(todo), {headers: this.headers})
       .pipe(
         map(res => res),
         catchError(this.handleError)

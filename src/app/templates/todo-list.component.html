@@ -24,10 +24,23 @@
 <!-- Todo list -->
 <div *ngFor="let todo of todos" class="input-group mb-3">
   <input
+    [(ngModel)]="todo.title"
     type="text"
     class="form-control"
     value="{{ todo.title }}"
-    disabled>
+    (keydown.enter)="update(todo.id, todo.title) || todo.isEdit=false"
+    [disabled]="!todo.isEdit">
+
+  <!-- Edit Button -->
+  <div class="input-group-append">
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="todo.isEdit=true">
+      <mat-icon svgIcon="pencil"></mat-icon>
+      Edit
+    </button>
+  </div>
 
   <!-- Delete Button -->
   <div class="input-group-append">
