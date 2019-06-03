@@ -33,7 +33,7 @@ export class TodoService {
   create(todo: Todo): Observable<Todo> {
     console.log('created')
     return this.http
-      .post(this.Url, this.body, {headers: this.headers})
+      .post(this.Url, JSON.stringify(todo), {headers: this.headers})
       .pipe(
         map(res => res),
         catchError(this.handleError)
@@ -68,6 +68,17 @@ export class TodoService {
       .delete(url, {headers: this.headers})
       .pipe(
         map(() => null),
+        catchError(this.handleError)
+      )
+  }
+
+  // POSTのテスト
+  postData(data): Observable<void> {
+    console.log('POSTED!')
+    return this.http
+      .post(this.Url, JSON.stringify(data), {headers: this.headers})
+      .pipe(
+        map(res => res),
         catchError(this.handleError)
       )
   }

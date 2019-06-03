@@ -49,4 +49,9 @@ export class TodoListComponent {
   pushData(data: Todo): void {
     this.newtodos.unshift(data);
   }
+
+  // POSTのテスト
+  postTest(data): void {
+    this.todoService.postData('TEST')
+  }
 }
