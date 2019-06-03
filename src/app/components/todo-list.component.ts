@@ -30,9 +30,7 @@ export class TodoListComponent {
   save(): void {
     this.todoService
       .create(this.todo)
-      .pipe(
-        map(data => {this.getNewTodo()})
-      )
+      .subscribe(data => this.getNewTodo())
     this.todo = new Todo();
   }
 
@@ -40,18 +38,11 @@ export class TodoListComponent {
   getNewTodo(): void {
     this.todoService
       .getNewTodo()
-      .pipe(
-        map(res => {this.pushData(res)})
-      )
+      .subscribe(res => {this.pushData(res)})
   }
 
   // htmlに渡すnewtodosにデータをpushする
   pushData(data: Todo): void {
     this.newtodos.unshift(data);
-  }
-
-  // POSTのテスト
-  postTest(data): void {
-    this.todoService.postData('TEST')
   }
 }

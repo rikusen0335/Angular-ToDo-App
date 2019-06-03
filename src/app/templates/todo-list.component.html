@@ -15,14 +15,14 @@
     type="text"
     class="form-control"
     placeholder="Type what you want to be done"
-    (keydown.enter)="save(res)">
+    (keydown.enter)="save()">
 
   <!-- Add Button -->
   <div class="input-group-append">
     <button
       class="btn btn-outline-success"
       type="button"
-      (click)="save(res)">
+      (click)="save()">
       <mat-icon svgIcon="plus"></mat-icon>
       Add
     </button>

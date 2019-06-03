@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class TodoService {
   todo: Todo[] = [];
-  private Url = `http://127.0.0.1:8000/api/todo`
+  private Url = `http://127.0.0.1:8000/api/todo/`
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   private body = JSON.stringify(this.todo)
 
@@ -31,7 +31,6 @@ export class TodoService {
 
   // 追加時の挙動
   create(todo: Todo): Observable<Todo> {
-    console.log('created')
     return this.http
       .post(this.Url, JSON.stringify(todo), {headers: this.headers})
       .pipe(
@@ -68,17 +67,6 @@ export class TodoService {
       .delete(url, {headers: this.headers})
       .pipe(
         map(() => null),
-        catchError(this.handleError)
-      )
-  }
-
-  // POSTのテスト
-  postData(data): Observable<void> {
-    console.log('POSTED!')
-    return this.http
-      .post(this.Url, JSON.stringify(data), {headers: this.headers})
-      .pipe(
-        map(res => res),
         catchError(this.handleError)
       )
   }
