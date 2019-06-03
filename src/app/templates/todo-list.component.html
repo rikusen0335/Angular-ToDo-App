@@ -1,12 +1,3 @@
-<div class="input-group-append">
-  <button
-    class="btn"
-    type="button"
-    (click)="postTest()">
-    POST
-  </button>
-</div>
-
 <!-- Input form -->
 <div class="input-group mb-3">
   <input
@@ -27,30 +18,10 @@
       Add
     </button>
   </div>
-
-  <!-- Delete Button -->
-  <div class="input-group-append">
-    <button class="btn btn-outline-danger" type="button">
-      <mat-icon svgIcon="delete"></mat-icon>
-      Delete
-    </button>
-  </div>
 </div>
 
-<!-- New Todos -->
-<div *ngFor="let newtodo of newtodos" class="input-group mb-3">
-  <input type="text" class="form-control" value="{{ newtodo[0].title }}" disabled>
 
-  <!-- Delete Button -->
-  <div class="input-group-append">
-    <button class="btn btn-outline-danger" type="button">
-      <mat-icon svgIcon="delete"></mat-icon>
-      Delete
-    </button>
-  </div>
-</div>
-
-<!-- Exist Todos-->
+<!-- Todo list -->
 <div *ngFor="let todo of todos" class="input-group mb-3">
   <input
     type="text"
@@ -60,7 +31,7 @@
 
   <!-- Delete Button -->
   <div class="input-group-append">
-    <button class="btn btn-outline-danger" type="button">
+    <button class="btn btn-outline-danger" type="button" (click)="delete(todo.id)">
       <mat-icon svgIcon="delete"></mat-icon>
       Delete
     </button>

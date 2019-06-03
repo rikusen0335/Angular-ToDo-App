@@ -12,9 +12,8 @@ import { Todo } from '../models/models';
 })
 export class TodoListComponent {
   todos: Todo[] = [];
-  newtodos: Todo[] = [];
   @Input() todo: Todo = new Todo();
-  @Output() valueChange = new EventEmitter<string>();
+  //@Output() valueChange = new EventEmitter<string>();
 
   constructor(
     private todoService: TodoService,
@@ -30,19 +29,37 @@ export class TodoListComponent {
   save(): void {
     this.todoService
       .create(this.todo)
-      .subscribe(data => this.getNewTodo())
-    this.todo = new Todo();
+      .subscribe(data => {
+        this.todos.push(data)
+        this.todos.sort((a, b) => b.id - a.id) // 最新を上にする
+      })
+    this.todo = new Todo(); // input初期化
+  }
+
+  // 削除ボタンを押した時の挙動
+  delete(id: number): void {
+    this.todoService
+      .delete(id)
+      .subscribe(() => this.popDataId(id))
   }
 
   // 最新の一件を呼び出す挙動
-  getNewTodo(): void {
+  /*getNewTodo(): void {
     this.todoService
       .getNewTodo()
       .subscribe(res => {this.pushData(res)})
   }
 
-  // htmlに渡すnewtodosにデータをpushする
-  pushData(data: Todo): void {
-    this.newtodos.unshift(data);
+  // htmlに渡すtodosにデータをpushする
+  pushData(data: Todo): void { 
+    this.todos = this.todos.concat(data)
+  }*/
+
+  // HTML要素を消す
+  popDataId(id: number): void {
+    this.todos = this.todos
+      .filter((element, index, array) => {
+        return element.id != id
+      })
   }
 }
